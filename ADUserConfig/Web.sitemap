@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="Default/nothing" title="Forside" description="Dette er forsiden">
+        <siteMapNode url="~/" title="Forside" description="Dette er forsiden" />
+        <siteMapNode url="CreateADUser" title="Opret bruger" description="Opret en ny AD bruger" />
+        <siteMapNode url="EditADUser" title="Rediger bruger" description="Rediger en AD bruger" />
+        <siteMapNode url="BULK" title="BULK" description="Opret mange AD brugere fra Excel-ark" />
+        <siteMapNode url="UserSettings" title="Indstillinger" description="Konfigurer dine indstillinger" />
+        <siteMapNode url="Admin/" title="[A] Admin" description="Admin-menu">
+			<siteMapNode url="Admin/BULKs" title="BULKs" description="Administrér BULKs" />
+			<siteMapNode url="Admin/BULKdelete" title="BULK slet" description="Slet mange brugere på en gang" />
+			<siteMapNode url="Admin/BULKOUmove" title="BULK OU flyt" description="Flyt mange brugere på en gang" />
+            <siteMapNode url="Admin/Log" title="Log" description="Vis log" />
+            <siteMapNode url="Admin/EditUsers" title="Brugere" description="Rediger brugere her på siden (ikke AD)" />
+            <siteMapNode url="Admin/EditData" title="Data" description="Rediger data" />
+            <siteMapNode url="Admin/News" title="News" description="Nyheder" />
+            <siteMapNode url="Admin/EditChangeLog" title="ChangeLog" description="Rediger ChangeLog" />
+            <siteMapNode url="Admin/Feedback" title="Feedback" description="Se feedback" />
+        </siteMapNode>
+    </siteMapNode>
+</siteMap>

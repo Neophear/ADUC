@@ -1,0 +1,70 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>AD User Config</title>
+    <link rel="stylesheet" id="hdlnkCDD" runat="server" type="text/css" href="~/Content/StyleSheet.css" />
+    <link id="Link1" runat="server" rel="shortcut icon" href="~/Content/favicon.ico" type="image/x-icon"/>
+    <link id="Link2" runat="server" rel="icon" href="~/Content/favicon.ico" type="image/ico"/>
+    <asp:ContentPlaceHolder id="head" runat="server" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" EnableScriptGlobalization="true" runat="server"></asp:ScriptManager>
+        <div id="container">
+            <div id="container2">
+                <asp:HyperLink ID="hplFeedbackToRead" NavigateUrl="~/Admin/Feedback" runat="server">FeedbackToRead</asp:HyperLink>
+	            <!-- ### Header Start ### -->
+	            <div class="header">
+                    <div style="float:left;">
+                        <h1><asp:HyperLink ID="hplTitle" NavigateUrl="~/" runat="server">ADUC</asp:HyperLink></h1>
+                        <p><%: Page.Title %></p>
+                    </div>
+                    <div style="float:right;padding:15px;text-align:right;">
+                        <asp:LoginView ID="lgnvwHeader" runat="server">
+                            <LoggedInTemplate>
+                                <p class="headerlink">
+                                    MANR: <asp:LoginName ID="lgnnmHeader" runat="server" /><br />
+                                    <asp:LoginStatus ID="lgnstsHeader" CssClass="headerlink" LogoutText="Log ud" LogoutAction="RedirectToLoginPage" runat="server" />
+                                </p>
+                                <asp:Panel ID="pnlCreateOrEdit" DefaultButton="btnCreateOrEdit" runat="server">
+                                    <asp:TextBox ID="txtCreateOrEdit" placeholder="Opret/Rediger" Width="100" Height="10" runat="server" tabindex="1"></asp:TextBox>
+                                    <asp:Button ID="btnCreateOrEdit" CausesValidation="false" OnClick="btnCreateOrEdit_Click" style="display:none;" runat="server" />
+                                </asp:Panel>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+                    </div>
+	            </div>
+	            <!-- ### Header End ### -->
+	            <!-- ### Top Menu Start Start ### -->
+                <asp:Menu ID="mnuTopMenu" runat="server" DataSourceID="smdsSiteMap" Orientation="Horizontal" IncludeStyleBlock="false" CssClass="menu">
+                    <LevelSubMenuStyles>
+                        <asp:SubMenuStyle />
+                        <asp:SubMenuStyle CssClass="submenu" />
+                    </LevelSubMenuStyles>
+                </asp:Menu>
+                <asp:SiteMapDataSource ID="smdsSiteMap" runat="server" ShowStartingNode="False" />
+	            <!-- ### Top Menu End ### -->
+	            <div id="contentcontainer">
+		            <!-- ### Content Start ### -->
+		            <div id="content">
+		                <asp:ContentPlaceHolder id="SiteContent" runat="server" />
+		            </div>
+		            <!-- ### Content End ### -->
+	            </div>
+	            <div id="footer">
+                    <asp:Label ID="lblFooter" runat="server" Text="lblFooter"></asp:Label><br />
+                    <asp:HyperLink ID="hplFeedback" runat="server" NavigateUrl="~/Feedback">Feedback</asp:HyperLink>
+	            </div>
+            </div>
+        </div>
+        <asp:Panel ID="pnlBULKs" Visible="false" CssClass="pnlAlwaysOnTop" runat="server">
+            <asp:HyperLink ID="hplBULKs" NavigateUrl="~/Admin/BULKs" runat="server">Der er BULKs der mangler godkendelse!</asp:HyperLink>
+        </asp:Panel>
+        <ajaxToolkit:DropShadowExtender ID="dseBULKs" Width="3" TargetControlID="pnlBULKs" runat="server" />
+        <ajaxToolkit:AlwaysVisibleControlExtender ID="avceBULKs" TargetControlID="pnlBULKs" runat="server" HorizontalSide="Center" VerticalOffset="5" />
+    </form>
+</body>
+</html>

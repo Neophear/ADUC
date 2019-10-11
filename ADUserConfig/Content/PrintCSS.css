@@ -1,0 +1,59 @@
+﻿@page {
+    margin: 0px 50px 80px 50px;
+}
+
+body {
+    font-family:Calibri;
+    font-size:xx-large;
+}
+.footer, .a5_footer {
+    font-size:small;
+}
+
+.password {
+    letter-spacing: 2px;
+    font-family: Consolas;
+}
+
+/*Baggrund*/
+.box-left-mini .front {
+    z-index: 5;
+    position: absolute;
+    width:450px;
+}
+.behind_container {
+    position: absolute;
+}
+/**********/
+
+/*A4 liste*/
+.a4main {
+    width:700px;
+    padding:5px;
+    border-top:1px solid;
+    border-bottom:1px solid;
+    display:inline-block;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+/**********/
+
+/*A5*/
+.a5 {
+    padding-top:30px;
+	height:640px;
+    page-break-after: always;
+    display:inline-block;
+    width:450px;
+	text-align:center;
+}
+.a5_footer {
+    margin-top:200px;
+}
+/**********/
