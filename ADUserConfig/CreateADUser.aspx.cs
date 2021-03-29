@@ -39,7 +39,7 @@ public partial class CreateADUser : Page
             if (!String.IsNullOrWhiteSpace(txtExpires.Text))
             {
                 DateTime dt;
-                if (DateTime.TryParse(txtExpires.Text, out dt))
+                if (DateTime.TryParseExact(txtExpires.Text, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dt))
                     expires = dt;
             }
 
@@ -118,6 +118,6 @@ public partial class CreateADUser : Page
     protected void cvExpires_ServerValidate(object source, ServerValidateEventArgs args)
     {
         DateTime date;
-        args.IsValid = String.IsNullOrWhiteSpace(txtExpires.Text) || DateTime.TryParse(txtExpires.Text, out date) && date.Date >= DateTime.Today;
+        args.IsValid = String.IsNullOrWhiteSpace(txtExpires.Text) || DateTime.TryParseExact(txtExpires.Text, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date) && date.Date >= DateTime.Today;
     }
 }

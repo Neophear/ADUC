@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Stiig;
@@ -10,6 +11,8 @@ public partial class Admin_Default : Page
     private DataTable table;
     protected void Page_Load(object sender, EventArgs e)
     {
+        tbrwADUCMobile.Visible = File.Exists(Server.MapPath("~/Admin/ADUCMobile.apk"));
+
         DataAccessLayer dal = new DataAccessLayer();
         DataTable dt = dal.ExecuteDataTable("SELECT * FROM [OUs]");
         dt.Columns.Add("UserCount");

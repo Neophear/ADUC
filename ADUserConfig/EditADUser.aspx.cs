@@ -86,12 +86,8 @@ public partial class EditADUser : Page
         {
             //Tooltip forsvinder åbenbart hvis det ikke er postback
             if (lstGroups.Items.Count != 0)
-            {
                 for (int i = 0; i < lstItemCount; i++)
-                {
                     lstGroups.Items[i].Attributes["Title"] = lstGroups.Items[i].Value;
-                }
-            }
         }
     }
 
@@ -122,8 +118,20 @@ public partial class EditADUser : Page
             }
 
             pwfPassword.GeneratePassword();
-            txtExpires.Text = user.DateExpires.HasValue ? user.DateExpires.Value.ToShortDateString() : String.Empty;
+
+            if (user.DateExpires.HasValue)
+            {
+                txtExpires.Text = user.DateExpires.Value.ToString("dd-MM-yyyy");
+                txtExpires.CssClass = "warning";
+            }
+            else
+            {
+                txtExpires.Text = String.Empty;
+                txtExpires.CssClass = "";
+            }
+
             lblLockedStatus.Text = user.Locked ? "Låst" : "Ikke låst";
+            lblEnabledStatus.Text = user.Enabled ? "Aktiv" : "Deaktiveret";
             chkbxUnlock.Enabled = chkbxUnlock.Checked = user.Locked;
         }
 
@@ -181,7 +189,7 @@ public partial class EditADUser : Page
         if (!String.IsNullOrWhiteSpace(txtExpires.Text))
         {
             DateTime dt;
-            if (DateTime.TryParse(txtExpires.Text, out dt))
+            if (DateTime.TryParseExact(txtExpires.Text, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dt))
                 expires = dt;
         }
 
@@ -287,7 +295,7 @@ public partial class EditADUser : Page
         if (chkbxExpires.Checked)
         {
             DateTime date;
-            args.IsValid = String.IsNullOrWhiteSpace(txtExpires.Text) || DateTime.TryParse(txtExpires.Text, out date) && date.Date >= DateTime.Today;
+            args.IsValid = String.IsNullOrWhiteSpace(txtExpires.Text) || DateTime.TryParseExact(txtExpires.Text, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date) && date.Date >= DateTime.Today;
         }
     }
 

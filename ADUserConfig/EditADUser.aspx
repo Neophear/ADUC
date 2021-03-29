@@ -67,6 +67,14 @@
                             </tr>
                             <tr>
                                 <td class="alignright">
+                                    <asp:Label ID="lblEnabled" runat="server" Text="Status:"></asp:Label>
+                                </td>
+                                <td colspan="2">
+                                    <asp:Label ID="lblEnabledStatus" runat="server" Text="lblEnabledStatus"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="alignright">
                                     <asp:Label ID="lblExpires" runat="server" Text="Udløber:"></asp:Label>
                                 </td>
                                 <td>

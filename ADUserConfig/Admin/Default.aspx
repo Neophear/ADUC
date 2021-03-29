@@ -45,6 +45,14 @@
                     <asp:Label ID="lblNews" runat="server" Text="Opret/rediger nyheder"></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
+            <asp:TableRow ID="tbrwADUCMobile" runat="server">
+                <asp:TableCell>
+                    <asp:HyperLink NavigateUrl="~/Admin/ADUCMobile.apk" runat="server">ADUCMobile.Android</asp:HyperLink>                    
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:Label runat="server" Text="Android app" />
+                </asp:TableCell>
+            </asp:TableRow>
         </asp:Table>
     </div>
     <div style="float:right;">

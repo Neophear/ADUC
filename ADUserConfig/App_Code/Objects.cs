@@ -30,6 +30,7 @@ public class ADUser
         get { return up.LastLogon; }
     }
     public bool Locked { get; set; }
+    public bool Enabled { get; set; }
     public DateTime? DateExpires { get; set; }
 
     public bool AccountExpired
@@ -198,8 +199,8 @@ public class ADUser
     public static bool DoesUserExist(string accountname)
     {
         using (var domainContext = new PrincipalContext(ContextType.Domain, "TRR-INET.local"))
-        using (var foundUser = UserPrincipal.FindByIdentity(domainContext, IdentityType.SamAccountName, accountname))
-            return foundUser != null;
+            using (var foundUser = UserPrincipal.FindByIdentity(domainContext, IdentityType.SamAccountName, accountname))
+                return foundUser != null;
     }
 
     //public void CreatePDriveFolder()
@@ -279,6 +280,7 @@ public class ADUser
                         {
                             up.PasswordNeverExpires = false;
                             up.ExpirePasswordNow();
+                            up.Enabled = true;
                             up.Save();
                         }
 
@@ -389,6 +391,7 @@ public class ADUser
                     user.OU = up.DistinguishedName.Substring(up.DistinguishedName.IndexOf(',') + 1);
                     user.up = up;
                     user.DateExpires = up.AccountExpirationDate;
+                    user.Enabled = up.Enabled == null ? true : up.Enabled.Value;
 
                     user.Groups = new List<string>();
                     PrincipalSearchResult<Principal> usersGroups = up.GetGroups();
@@ -609,7 +612,6 @@ public class Logging
         dal.AddParameter("@ObjectName", on, DbType.String);
         dal.AddParameter("@Password", p, DbType.String);
         dal.AddParameter("@MustChangePassword", m ?? System.Data.SqlTypes.SqlBoolean.Null, DbType.Boolean);
-        //dal.AddParameter("@Expires", e.HasValue ? e.Value : System.Data.SqlTypes.SqlDateTime.Null, DbType.Date);
         dal.AddParameter("@Note", n, DbType.String);
         dal.ExecuteNonQuery("EXEC dbo.WriteLog @Action, @ObjectType, @Username, @ObjectName, @Password, @MustChangePassword, @Note");
         dal.ClearParameters();

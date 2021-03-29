@@ -78,7 +78,7 @@
                                                 <asp:View ID="vNotChosen" runat="server">
                                                     <asp:TextBox ID="txtMessage" runat="server" MaxLength="150"></asp:TextBox>
                                                     <ajaxToolkit:TextBoxWatermarkExtender ID="wmeMessage" WatermarkCssClass="watermark" TargetControlID="txtMessage" WatermarkText="Afvist fordi... (ikke påkrævet)" runat="server" /><br />
-                                                    <asp:LinkButton ID="lnkbtnApprove" CommandArgument='<%# Eval("ID") %>' OnClick="lnkbtnApprove_Click" runat="server">Godkend</asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnApprove" CommandArgument='<%# Eval("ID") %>' OnClick="lnkbtnApprove_Click" OnClientClick="this.parentElement.innerHTML='';" runat="server">Godkend</asp:LinkButton>
                                                     <asp:LinkButton ID="lnkbtnReject" CommandArgument='<%# Eval("ID") %>' OnClick="lnkbtnReject_Click" runat="server">Afvis</asp:LinkButton>
                                                 </asp:View>
                                                 <asp:View ID="vChosen" runat="server">
