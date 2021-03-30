@@ -130,10 +130,13 @@ namespace Stiig
         {
             string modifieddate = "{0} {1} siden";
             TimeSpan diff = DateTime.Now - time;
+            int years = (int)(diff.Days / 365.242199);
             int months = diff.Days / 30;
             int weeks = diff.Days / 7;
 
-            if (months > 0)
+            if (years > 0)
+                modifieddate = string.Format(modifieddate, years, "år");
+            else if (months > 0)
                 modifieddate = string.Format(modifieddate, months, months > 1 ? "måneder" : "måned");
             else if (weeks > 0)
                 modifieddate = string.Format(modifieddate, weeks, weeks > 1 ? "uger" : "uge");
