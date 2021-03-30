@@ -24,6 +24,10 @@ body {
 .behind_container {
     position: absolute;
 }
+
+.behind {
+    filter:grayscale(1) opacity(0.1);
+}
 /**********/
 
 /*A4 liste*/

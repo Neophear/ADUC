@@ -30,7 +30,7 @@
 	        </div>
             <div class="behind_container">
                 <div class="behind">
-                    <asp:Image ID="imgBackground" Height="640" Width="450" ImageUrl="/Content/images/trr_logo.jpg" runat="server" />
+                    <asp:Image ID="imgBackground" Height="450" Width="450" ImageUrl="/Content/images/PIT.PNG" runat="server" />
                 </div>
             </div>
         </asp:Panel>
@@ -56,7 +56,7 @@
 		                    </div>
                             <div class="behind_container">
                                 <div class="behind">
-                                    <asp:Image ID="imgBackground" Height="640" Width="450" ImageUrl="/Content/images/trr_logo.jpg" runat="server" />
+                                    <asp:Image ID="imgBackground" Height="450" Width="450" ImageUrl="/Content/images/PIT.PNG" runat="server" />
                                 </div>
                             </div>
                         </div>
