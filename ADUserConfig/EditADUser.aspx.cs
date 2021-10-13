@@ -1,14 +1,8 @@
-﻿using System;
+﻿using Stiig;
+using System;
 using System.Collections.Generic;
-using System.DirectoryServices.AccountManagement;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Stiig;
 
 public partial class EditADUser : Page
 {
@@ -19,7 +13,6 @@ public partial class EditADUser : Page
     {
         lblMessage.Text = String.Empty;
         hplPrint.Visible = false;
-        btnSendEmail.Visible = false;
         pwfPassword.TextBoxWithAccount = txtMANR.ClientID;
         lblInfo.Text = Utilities.GetInfoFromDBOrCache("EditUserInfo");
 
@@ -149,12 +142,6 @@ public partial class EditADUser : Page
     {
         Response.Redirect("~/EditADUser/" + txtMANR.Text, true);
     }
-    protected void btnSendEmail_Click(object sender, EventArgs e)
-    {
-        string MANR = ViewState["MANR"].ToString();
-        ADUser.Mail(MANR, mailPassword);
-        SetMessage(string.Format("Mail sendt til 00{0}@mil.dk", MANR));
-    }
 
     private void ChangePassword()
     {
@@ -168,8 +155,6 @@ public partial class EditADUser : Page
         {
             pwfPassword.GeneratePassword();
             mailPassword = newPassword;
-            btnSendEmail.Text = "Email koden til: 00" + MANR + "@mil.dk ?";
-            btnSendEmail.Visible = true;
             SetMessage(String.Format("Password ændret til: {0}", newPassword));
             hplPrint.NavigateUrl = String.Format("~/Print/{0}/{1}", MANR, newPassword);
             hplPrint.Visible = true;

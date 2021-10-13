@@ -46,7 +46,7 @@ namespace Stiig
         }
         public static string GetSearchOU()
         {
-            return Roles.IsUserInRole("Admin") ? "DC = TRR-INET,DC = LOCAL" : "OU = Brugere,DC = TRR-INET,DC = LOCAL";
+            return Roles.IsUserInRole("Admin") ? "DC = NRU-INET,DC = LOCAL" : "OU = Brugere,DC = NRU-INET,DC = LOCAL";
         }
         public static CustomError CheckPassword(string password, string accountname)
         {
@@ -314,12 +314,12 @@ namespace Stiig
             string from = ConfigurationManager.AppSettings["Username"];
             string password = ConfigurationManager.AppSettings["Password"];
             string _to = "00" + MA + "@mil.dk";
-            string subject = "Ny kode til din internet konto(TRR-INET & Guest_WiFi) ved Trænregimentet på Aalborg kaserne.";
+            string subject = "Ny kode til din internet konto(NRU-INET & Guest_WiFi) ved Trænregimentet på Aalborg kaserne.";
             StringBuilder sb = new StringBuilder();
             sb.Append("Hej ");
             sb.AppendLine(Name);
             sb.AppendLine();
-            sb.AppendLine("Du har fået ny kode til TRR-INET & Guest_WiFi");
+            sb.AppendLine("Du har fået ny kode til NRU-INET & Guest_WiFi");
             sb.AppendLine();
             sb.Append("Brugernavn: ");
             sb.AppendLine(MA);

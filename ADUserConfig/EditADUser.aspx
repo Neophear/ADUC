@@ -178,8 +178,6 @@
                                         <asp:Label ID="lblGroups" runat="server" Text="Grupper:"></asp:Label>
                                     </td>
                                     <td colspan="2">
-                                        <%--<asp:TextBox ID="txtGroups" Enabled="false" ForeColor="Black" Font-Size="Smaller" TextMode="MultiLine" Height="100" runat="server"></asp:TextBox>--%>
-                                        <%--<asp:DropDownList ID="ddlGroups" SelectMethod="Multiple" runat="server"></asp:DropDownList>--%>
                                         <asp:ListBox ID="lstGroups" SelectionMode="Multiple" runat="server"></asp:ListBox>
                                     </td>
                                 </tr>
@@ -195,11 +193,6 @@
                             <tr>
                                 <td colspan="3">
                                     <asp:Button ID="btnSave" runat="server" ValidationGroup="Edit" OnClick="btnSave_Click" Text="Gem ændringer" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">
-                                    <asp:Button ID="btnSendEmail" runat="server" OnClick="btnSendEmail_Click" Text="Send Email" />
                                 </td>
                             </tr>
                         </asp:Panel>

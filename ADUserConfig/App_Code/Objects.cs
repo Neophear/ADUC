@@ -51,7 +51,7 @@ public class ADUser
 
     public ADUser(string accountname, string firstname, string lastname, string password, string ou, DateTime? expires = null)
     {
-        ouContex = new PrincipalContext(ContextType.Domain, "TRR-INET.local", ou);
+        ouContex = new PrincipalContext(ContextType.Domain, "NRU-INET.local", ou);
         up = new UserPrincipal(ouContex);
 
         this.AccountName = accountname.Trim();
@@ -78,7 +78,7 @@ public class ADUser
             try
             {
                 up.SamAccountName = AccountName;
-                up.UserPrincipalName = AccountName + "@TRR-INET.local";
+                up.UserPrincipalName = AccountName + "@NRU-INET.local";
                 up.Surname = Lastname;
                 up.GivenName = Firstname;
                 up.DisplayName = AccountName;
@@ -86,20 +86,10 @@ public class ADUser
                 up.AccountExpirationDate = DateExpires;
                 up.Enabled = true;
 
-                //up.HomeDrive = "P:";
-                //up.HomeDirectory = (@"\\TRR-I-SRV2\Pdrev$\" + AccountName);
-
                 if (mustChangePassword)
                     up.ExpirePasswordNow();
 
                 up.Save();
-
-                //CreatePDriveFolder();
-                //DirectoryEntry entry = (DirectoryEntry)up.GetUnderlyingObject();
-                //entry.InvokeSet("HomeDirectory", new object[] { (@"\\TRR-I-SRV2\Pdrev$\" + AccountName) });
-                //entry.InvokeSet("HomeDrive", new object[] { "P:" });
-                //entry.InvokeSet("ProfilePath", new object[] { (@"\\TRR-SRV1\UserProfiles$\" + AccountName) });
-                //entry.CommitChanges();
 
                 if (!BULK)
                     Logging.WriteLog(Logging.Action.Create, Logging.ObjectType.ADUser, AccountName, (!mustChangePassword ? Password : String.Empty), mustChangePassword, String.Format("{0}{1}", FullName, (DateExpires.HasValue ? (" - " + DateExpires.Value.ToShortDateString()) : String.Empty)));
@@ -136,11 +126,6 @@ public class ADUser
                     try
                     {
                         user.up.Delete();
-                        //if (Directory.Exists(@"\\TRR-I-SRV2\Pdrev$\" + username))
-                        //    Directory.Delete(@"\\TRR-I-SRV2\Pdrev$\" + username);
-
-                        //if (Directory.Exists(@"\\TRR-I-SRV2\UserProfiles$\" + username))
-                        //    Directory.Delete(@"\\TRR-I-SRV2\UserProfiles$\" + username);
                     }
                     finally
                     {
@@ -198,26 +183,10 @@ public class ADUser
     }
     public static bool DoesUserExist(string accountname)
     {
-        using (var domainContext = new PrincipalContext(ContextType.Domain, "TRR-INET.local"))
+        using (var domainContext = new PrincipalContext(ContextType.Domain, "NRU-INET.local"))
             using (var foundUser = UserPrincipal.FindByIdentity(domainContext, IdentityType.SamAccountName, accountname))
                 return foundUser != null;
     }
-
-    //public void CreatePDriveFolder()
-    //{
-    //    try
-    //    {
-    //        string folderName = @"\\TRR-I-SRV2\Pdrev$\" + AccountName;
-    //        Directory.CreateDirectory(folderName);
-
-    //        FolderACL(folderName);
-    //    }
-    //    catch (Exception)
-    //    {
-    //        throw;
-    //        //MessageBox.Show("Error: " + ex.ToString());
-    //    }
-    //}
 
     private void FolderACL(String folderPath)
     {
@@ -266,7 +235,7 @@ public class ADUser
             {
                 try
                 {
-                    PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "TRR-INET.local", Utilities.GetSearchOU());
+                    PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "NRU-INET.local", Utilities.GetSearchOU());
 
                     UserPrincipal up = UserPrincipal.FindByIdentity(ouContex, accountname);
 
@@ -308,7 +277,7 @@ public class ADUser
         {
             try
             {
-                PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "TRR-INET.local", Utilities.GetSearchOU());
+                PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "NRU-INET.local", Utilities.GetSearchOU());
 
                 UserPrincipal up = UserPrincipal.FindByIdentity(ouContex, accountname);
 
@@ -341,7 +310,7 @@ public class ADUser
         {
             try
             {
-                PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "TRR-INET.local", Utilities.GetSearchOU());
+                PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "NRU-INET.local", Utilities.GetSearchOU());
 
                 UserPrincipal up = UserPrincipal.FindByIdentity(ouContex, accountname);
 
@@ -378,7 +347,7 @@ public class ADUser
         {
             try
             {
-                PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "TRR-INET.local", Utilities.GetSearchOU());
+                PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "NRU-INET.local", Utilities.GetSearchOU());
 
                 UserPrincipal up = UserPrincipal.FindByIdentity(ouContex, accountname);
 
@@ -420,7 +389,7 @@ public class ADUser
     {
         try
         {
-            PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "TRR-INET.local", ou);
+            PrincipalContext ouContex = new PrincipalContext(ContextType.Domain, "NRU-INET.local", ou);
             UserPrincipal up = new UserPrincipal(ouContex);
             PrincipalSearcher ps = new PrincipalSearcher();
             ps.QueryFilter = up;

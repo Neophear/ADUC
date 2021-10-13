@@ -117,11 +117,6 @@
                                 <asp:Button ID="btnCreate" runat="server" Text="Opret" OnClick="btnCreate_Click" />
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="3">
-                                <asp:Button ID="btnSendEmail" CausesValidation="false" runat="server" OnClick="btnSendEmail_Click" Text="Send Email" />
-                            </td>
-                        </tr>
                     </table>
                 </td>
                 <td style="vertical-align: top; padding: 20px;">

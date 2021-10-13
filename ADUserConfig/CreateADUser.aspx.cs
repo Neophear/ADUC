@@ -11,7 +11,6 @@ public partial class CreateADUser : Page
     {
         lblMessage.Visible = false;
         hplPrint.Visible = false;
-        btnSendEmail.Visible = false;
         pwfPassword.TextBoxWithAccount = txtMANR.ClientID;
         lblInfo.Text = Utilities.GetInfoFromDBOrCache("CreateUserInfo");
 
@@ -62,8 +61,6 @@ public partial class CreateADUser : Page
                 hplPrint.Visible = true;
                 mailPassword = user.Password;
                 mailUsername = user.AccountName;
-                btnSendEmail.Text = "Email koden til: 00" + user.AccountName + "@mil.dk ?";
-                btnSendEmail.Visible = true;
             }
             else
             {
@@ -100,12 +97,6 @@ public partial class CreateADUser : Page
                     break;
             }
         }
-    }
-
-    protected void btnSendEmail_Click(object sender, EventArgs e)
-    {
-        ADUser.Mail(mailUsername, mailPassword);
-        SetMessage(string.Format("Mail sendt til 00{0}@mil.dk",mailUsername));
     }
 
     public void SetMessage(string message, bool isError = false)
